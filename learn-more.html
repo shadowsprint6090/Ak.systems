@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinit Kumar | System Data</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div id="music-hud">
+        <button class="music-btn" onclick="toggleMusic()">AUDIO</button>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=synthwave-outrun-112579.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="canvas-container"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">AK.SYSTEMS</div>
+            </div>
+            <a href="index.html" class="cyber-btn white magnetic">
+                <i class="fas fa-arrow-left"></i> RETURN
+            </a>
+        </header>
+
+        <section class="info-section">
+            <h1 class="glitch-header" data-text="SYSTEM ARCHITECT">SYSTEM ARCHITECT</h1>
+            
+            <!-- ABOUT SECTION -->
+            <div class="content-block glass-panel">
+                <h2 class="neon-cyan"><i class="fas fa-user-astronaut"></i> BIOGRAPHY</h2>
+                <p>
+                    I am <strong>Abhinit Kumar</strong>, a high-performance Systems Engineer. I do not simply write code; I architect digital ecosystems. My expertise lies in bridging the gap between raw C++ backend logic and immersive WebGL experiences.
+                </p>
+                <p>
+                    With over 2 years of operational experience, I have deployed secure backends, modding engines, and next-gen web interfaces. I operate with precision, security, and speed.
+                </p>
+            </div>
+
+            <!-- LINK TO POLICIES -->
+            <div class="content-block" style="text-align: center; border-left-color: var(--neon-red);">
+                <h2 class="neon-red" style="justify-content: center;"><i class="fas fa-file-contract"></i> OPERATIONAL PROTOCOLS</h2>
+                <p>
+                    Before initiating any contract, you must review the Terms of Service, Payment Schedules, and Refund Policies.
+                </p>
+                <br>
+                <a href="policies.html" class="cyber-btn red magnetic" style="display: inline-flex;">
+                    <i class="fas fa-lock"></i> VIEW POLICY DOCUMENTS
+                </a>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>&copy; 2024 ABHINIT KUMAR. SECURE CONNECTION.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

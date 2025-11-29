@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinit Kumar | System Architect</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Screen Overlays -->
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <!-- Audio Interface -->
+    <div id="music-hud">
+        <div class="equalizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+        <button class="music-btn" onclick="toggleMusic()">INIT AUDIO</button>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=synthwave-outrun-112579.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 3D Background -->
+    <div id="canvas-container"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container magnetic">
+                <div class="logo">AK.SYSTEMS</div>
+            </div>
+            <div class="status-panel">
+                <div class="status-item">
+                    <span class="label">ID:</span> <span class="val neon-green">SHADOWSPRINT001</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">SYS:</span> <span class="val neon-cyan blink">ONLINE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <p class="pre-title">// SYSTEM_ARCHITECT // FULL_STACK</p>
+                <h1 class="glitch-header" data-text="Abhinit Kumar">Abhinit Kumar</h1>
+                
+                <div class="description-hud">
+                    <div class="hud-line"></div>
+                    <p>
+                        I engineer digital supremacy. Bridging the gap between <span class="neon-cyan">High-Performance C++ Systems</span> and <span class="neon-pink">Immersive WebGL Realities</span>. 
+                        <br><br>
+                        With over 2 years of operational experience, I build secure backends, modding engines, and next-gen interfaces.
+                    </p>
+                </div>
+
+                <!-- MAIN BUTTONS GRID -->
+                <div class="btn-grid">
+                    
+                    <!-- 1. Shadow Mods (Red) -->
+                    <a href="https://shadowsprint6090.github.io/shadowmods69/" target="_blank" class="cyber-btn red magnetic">
+                        <span class="btn-tag">LIVE</span>
+                        <i class="fas fa-biohazard"></i> SHADOW MODS
+                    </a>
+
+                    <!-- 2. Projects (Cyan) -->
+                    <button onclick="scrollToProjects()" class="cyber-btn cyan magnetic">
+                        <span class="btn-tag">DB</span>
+                        <i class="fas fa-database"></i> PROJECTS
+                    </button>
+
+                    <!-- 3. Email Me (Yellow/Gold) -->
+                    <a href="mailto:devilkiller4279@gmail.com" class="cyber-btn yellow magnetic">
+                        <span class="btn-tag">MAIL</span>
+                        <i class="fas fa-envelope-open-text"></i> EMAIL ME
+                    </a>
+
+                    <!-- 4. Learn More (White) - LINKED TO NEW PAGE -->
+                    <a href="learn-more.html" class="cyber-btn white magnetic">
+                        <span class="btn-tag">INFO</span>
+                        <i class="fas fa-info-circle"></i> LEARN MORE
+                    </a>
+
+                    <!-- 5. Discord (Blurple) -->
+                    <a href="https://discord.com" target="_blank" class="cyber-btn blurple magnetic">
+                        <span class="btn-tag">VOIP</span>
+                        <i class="fab fa-discord"></i> DISCORD
+                    </a>
+                </div>
+
+                <!-- SOCIAL DOCK -->
+                <div class="social-dock">
+                    <a href="https://www.instagram.com/Ghost_freak.1" target="_blank" class="social-link magnetic insta"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:devilkiller4279@gmail.com" class="social-link magnetic gmail"><i class="fas fa-envelope"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="social-link magnetic x"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="social-link magnetic yt"><i class="fab fa-youtube"></i></a>
+                    <a href="https://snapchat.com" target="_blank" class="social-link magnetic snap"><i class="fab fa-snapchat"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="social-link magnetic fb"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>ACTIVE PROTOCOLS</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card hazard">
+                    <div class="card-header">
+                        <h3>SHADOW MODS</h3>
+                        <i class="fas fa-circle pulse-red"></i>
+                    </div>
+                    <p>The ultimate repository for game modifications and custom scripts. High-traffic hub.</p>
+                    <div class="tech-stack"><span>LUA</span><span>JS</span><span>HTML</span></div>
+                    <a href="https://shadowsprint6090.github.io/shadowmods69/" target="_blank" class="card-btn">INITIALIZE &rarr;</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>ALGO TRADER</h3>
+                        <i class="fas fa-circle pulse-cyan"></i>
+                    </div>
+                    <p>HFT (High Frequency Trading) simulation engine designed for microsecond latency.</p>
+                    <div class="tech-stack"><span>C++</span><span>PYTHON</span><span>SQL</span></div>
+                    <div class="card-status">SYSTEM SECURE</div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>NEON VERSE</h3>
+                        <i class="fas fa-circle pulse-pink"></i>
+                    </div>
+                    <p>Interactive 3D WebGL Portfolio (Current Interface). Physics-based UI.</p>
+                    <div class="tech-stack"><span>THREE.JS</span><span>GSAP</span><span>CSS3</span></div>
+                    <div class="card-status">RUNNING</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 ABHINIT KUMAR. END OF LINE.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

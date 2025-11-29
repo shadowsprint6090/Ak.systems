@@ -1,0 +1,369 @@
+:root {
+    /* --- COLOR PALETTE --- */
+    --bg: #020203;
+    --neon-cyan: #00f3ff;
+    --neon-pink: #ff00ff;
+    --neon-red: #ff2a2a;
+    --neon-green: #00ff41;
+    --neon-yellow: #ffd700; /* Gold/Yellow */
+    --discord: #5865F2;
+    
+    /* --- MATERIALS --- */
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-panel: rgba(10, 10, 15, 0.85);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
+body {
+    background-color: var(--bg);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   SCREEN OVERLAYS & EFFECTS
+   ========================================= */
+.scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 3px);
+    pointer-events: none; z-index: 99; opacity: 0.6;
+}
+
+.vignette {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 50%, black 100%);
+    pointer-events: none; z-index: 98;
+}
+
+#canvas-container { 
+    position: fixed; top: 0; left: 0; 
+    width: 100%; height: 100%; z-index: -1; 
+}
+
+/* =========================================
+   AUDIO INTERFACE
+   ========================================= */
+#music-hud {
+    position: fixed; top: 30px; right: 30px; z-index: 1000;
+    display: flex; align-items: center; gap: 15px;
+}
+
+.music-btn {
+    background: rgba(0,0,0,0.6); border: 1px solid var(--neon-cyan); color: var(--neon-cyan);
+    padding: 10px 20px; font-family: 'Orbitron'; font-weight: bold; cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    transition: 0.3s;
+}
+
+.music-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 20px var(--neon-cyan); }
+
+.equalizer { display: flex; gap: 3px; height: 20px; align-items: flex-end; }
+.bar { width: 4px; background: var(--neon-cyan); animation: eq 0.5s infinite alternate; }
+.bar:nth-child(2) { animation-delay: 0.1s; background: var(--neon-pink); }
+.bar:nth-child(3) { animation-delay: 0.2s; background: var(--neon-green); }
+.bar:nth-child(4) { animation-delay: 0.3s; background: var(--neon-red); }
+@keyframes eq { 0% { height: 5px; } 100% { height: 20px; } }
+
+/* =========================================
+   LAYOUT & HEADER
+   ========================================= */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
+
+header { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
+
+.logo {
+    font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 900; color: #fff;
+    text-shadow: 0 0 10px var(--neon-pink); letter-spacing: 2px;
+}
+
+.status-panel { text-align: right; font-family: monospace; font-size: 0.9rem; }
+.status-item { margin-bottom: 5px; }
+.label { color: #666; }
+
+/* Utility Classes */
+.neon-green { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
+.neon-cyan { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+.neon-red { color: var(--neon-red); text-shadow: 0 0 5px var(--neon-red); }
+.neon-yellow { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); }
+.blink { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero { min-height: 80vh; display: flex; align-items: center; }
+
+.pre-title { color: var(--neon-yellow); letter-spacing: 3px; margin-bottom: 10px; font-weight: bold; }
+
+/* Glitch Header */
+.glitch-header {
+    font-family: 'Orbitron'; font-size: 6rem; line-height: 0.9; text-transform: uppercase;
+    color: #fff; margin-bottom: 30px; position: relative;
+}
+.glitch-header::before, .glitch-header::after {
+    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg);
+}
+.glitch-header::before {
+    left: 2px; text-shadow: -2px 0 var(--neon-red); clip-path: inset(0 0 0 0);
+    animation: glitch-anim-1 3s infinite linear alternate-reverse;
+}
+.glitch-header::after {
+    left: -2px; text-shadow: -2px 0 var(--neon-cyan); clip-path: inset(0 0 0 0);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+@keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(60% 0 10% 0); } }
+@keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(15% 0 40% 0); } }
+
+.description-hud {
+    background: var(--glass); border-left: 4px solid var(--neon-cyan);
+    padding: 20px; max-width: 700px; backdrop-filter: blur(10px);
+    margin-bottom: 50px; font-size: 1.2rem; color: #ddd; position: relative;
+}
+
+/* =========================================
+   BUTTONS (CYBER STYLE)
+   ========================================= */
+.btn-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
+
+.cyber-btn {
+    position: relative; padding: 20px 40px; font-family: 'Orbitron'; font-weight: 700;
+    text-transform: uppercase; color: #fff; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2); text-decoration: none;
+    clip-path: polygon(15% 0, 100% 0, 100% 70%, 85% 100%, 0 100%, 0 30%);
+    display: flex; align-items: center; gap: 10px; transition: 0.3s;
+    overflow: hidden;
+}
+
+.btn-tag { 
+    font-size: 0.6rem; background: #fff; color: #000; 
+    padding: 2px 5px; border-radius: 2px; margin-right: 5px;
+}
+
+/* Button Color Variants */
+.cyber-btn.red { border-color: var(--neon-red); box-shadow: 0 0 10px rgba(255,42,42,0.2); }
+.cyber-btn.red:hover { background: var(--neon-red); box-shadow: 0 0 40px var(--neon-red); }
+
+.cyber-btn.cyan { border-color: var(--neon-cyan); }
+.cyber-btn.cyan:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 40px var(--neon-cyan); }
+
+.cyber-btn.blurple { border-color: var(--discord); }
+.cyber-btn.blurple:hover { background: var(--discord); box-shadow: 0 0 40px var(--discord); }
+
+.cyber-btn.yellow { border-color: var(--neon-yellow); color: var(--neon-yellow); }
+.cyber-btn.yellow:hover { background: var(--neon-yellow); color: #000; box-shadow: 0 0 40px var(--neon-yellow); }
+
+.cyber-btn.white { border-color: #fff; color: #fff; }
+.cyber-btn.white:hover { background: #fff; color: #000; box-shadow: 0 0 40px #fff; }
+
+/* =========================================
+   SOCIAL DOCK
+   ========================================= */
+.social-dock {
+    display: flex; gap: 20px; background: var(--glass); padding: 20px;
+    border-radius: 20px; border: 1px solid var(--glass-border);
+    width: fit-content; backdrop-filter: blur(10px);
+}
+
+.social-link {
+    width: 55px; height: 55px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: #fff; text-decoration: none; border-radius: 12px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    transition: color 0.3s;
+}
+
+/* Brand Hovers */
+.insta:hover { background: #E1306C; box-shadow: 0 0 30px #E1306C; border-color: #E1306C; }
+.x:hover { background: #000; box-shadow: 0 0 30px #fff; border-color: #fff; }
+.yt:hover { background: #FF0000; box-shadow: 0 0 30px #FF0000; border-color: #FF0000; }
+.gmail:hover { background: #EA4335; box-shadow: 0 0 30px #EA4335; border-color: #EA4335; }
+.snap:hover { background: #FFFC00; color: #000; box-shadow: 0 0 30px #FFFC00; border-color: #FFFC00; }
+.fb:hover { background: #1877f2; box-shadow: 0 0 30px #1877f2; border-color: #1877f2; }
+
+/* =========================================
+   PROJECTS SECTION (MAIN PAGE)
+   ========================================= */
+#projects { display: none; padding: 100px 0; opacity: 0; }
+
+.section-header { display: flex; align-items: center; gap: 20px; margin-bottom: 50px; }
+.section-header h2 { font-family: 'Orbitron'; font-size: 3rem; color: #fff; }
+.section-header .line { flex-grow: 1; height: 2px; background: linear-gradient(90deg, var(--neon-pink), transparent); }
+
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.project-card {
+    background: rgba(10, 10, 12, 0.8); border: 1px solid var(--glass-border); padding: 30px;
+    transition: 0.4s; position: relative; overflow: hidden;
+}
+.project-card:hover { transform: translateY(-10px); }
+
+/* Hazard Card (Red) */
+.project-card.hazard { border-color: var(--neon-red); box-shadow: 0 0 15px rgba(255,0,0,0.1); }
+.project-card.hazard:hover { box-shadow: 0 0 30px rgba(255,0,0,0.3); }
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.card-header h3 { font-family: 'Orbitron'; font-size: 1.5rem; color: #fff; }
+
+.pulse-red { color: var(--neon-red); animation: pulse 1s infinite; }
+.pulse-cyan { color: var(--neon-cyan); animation: pulse 2s infinite; }
+.pulse-pink { color: var(--neon-pink); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+.tech-stack { margin: 15px 0; display: flex; gap: 10px; }
+.tech-stack span { font-size: 0.7rem; background: #222; padding: 3px 8px; border-radius: 4px; border: 1px solid #444; }
+
+.card-btn {
+    display: inline-block; color: var(--neon-red); font-weight: bold; text-decoration: none;
+    border: 1px solid var(--neon-red); padding: 10px 20px; margin-top: 15px;
+    transition: 0.3s; font-family: 'Orbitron';
+}
+.card-btn:hover { background: var(--neon-red); color: #fff; box-shadow: 0 0 20px var(--neon-red); }
+
+.card-status {
+    margin-top: 15px; font-size: 0.8rem; color: #666; border-top: 1px solid #333; padding-top: 10px;
+}
+
+/* =========================================
+   LEARN MORE PAGE
+   ========================================= */
+.info-section { padding: 50px 0; }
+
+.content-block {
+    background: var(--glass-panel);
+    border: 1px solid var(--glass-border);
+    padding: 40px; margin-bottom: 60px; position: relative;
+    border-left: 4px solid var(--neon-cyan);
+    backdrop-filter: blur(15px);
+}
+
+.content-block h2 {
+    font-family: 'Orbitron'; margin-bottom: 20px; font-size: 2rem;
+    display: flex; align-items: center; gap: 15px;
+}
+
+.content-block p {
+    font-size: 1.1rem; line-height: 1.8; color: #ddd; margin-bottom: 15px;
+}
+
+/* Legal Panel */
+.legal-panel {
+    border-left: 4px solid var(--neon-green);
+    background: rgba(0, 20, 0, 0.7);
+}
+
+.legal-list { list-style: none; margin-top: 20px; }
+.legal-list li {
+    margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #aaa;
+}
+.legal-list i { color: var(--neon-green); }
+
+.tm-badge {
+    display: inline-block; margin-top: 20px; border: 1px solid #555;
+    padding: 5px 10px; font-size: 0.7rem; color: #888; font-family: monospace;
+}
+
+/* =========================================
+   POLICIES PAGE
+   ========================================= */
+
+.policy-doc {
+    background: rgba(15, 15, 20, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+/* --- FIXED VISIBILITY FOR HAZARD (NO REFUND) CARD --- */
+.policy-doc.hazard {
+    /* Bright Red Background Gradient to ensure visibility */
+    background: linear-gradient(135deg, rgba(80, 0, 0, 0.95), rgba(40, 0, 0, 0.95));
+    border: 2px solid #ff2a2a;
+    box-shadow: 0 0 25px rgba(255, 42, 42, 0.2);
+    z-index: 10;
+}
+
+.policy-doc.hazard:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, rgba(100, 0, 0, 1), rgba(60, 0, 0, 1));
+    box-shadow: 0 0 40px rgba(255, 42, 42, 0.4);
+}
+
+/* Ensure text inside Hazard card is white */
+.policy-doc.hazard h3, 
+.policy-doc.hazard p {
+    color: #fff !important;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.doc-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.doc-header h3 {
+    font-family: 'Orbitron';
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin: 0;
+    color: #fff;
+}
+
+.status-tag {
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #000;
+    border: 1px solid #555;
+}
+
+.status-tag.red { color: var(--neon-red); border-color: var(--neon-red); }
+.status-tag.yellow { color: var(--neon-yellow); border-color: var(--neon-yellow); }
+.status-tag.cyan { color: var(--neon-cyan); border-color: var(--neon-cyan); }
+.status-tag.green { color: var(--neon-green); border-color: var(--neon-green); }
+
+.doc-body {
+    padding: 30px;
+}
+
+.doc-body p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #ccc;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.doc-body strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Hover Effect on Standard Docs */
+.policy-doc:not(.hazard):hover {
+    transform: translateX(10px);
+    border-left: 4px solid #fff;
+    transition: 0.3s;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer { margin-top: 100px; padding: 40px; text-align: center; color: #555; border-top: 1px solid #222; }
+
+/* Mobile Responsiveness */
+@media(max-width:768px){
+    h1.glitch-header { font-size: 3.5rem; }
+    .social-dock { justify-content: center; }
+    .btn-grid { justify-content: center; }
+    .doc-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+}

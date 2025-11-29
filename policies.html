@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinit Kumar | Legal Protocols</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div id="music-hud">
+        <button class="music-btn" onclick="toggleMusic()">AUDIO</button>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=synthwave-outrun-112579.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="canvas-container"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo" style="font-size: 1.5rem;">AK.LEGAL</div>
+            </div>
+            <a href="learn-more.html" class="cyber-btn white magnetic">
+                <i class="fas fa-arrow-left"></i> BACK
+            </a>
+        </header>
+
+        <section class="info-section">
+            <h1 class="glitch-header" data-text="PROTOCOLS">PROTOCOLS</h1>
+            <p style="color: var(--neon-red); letter-spacing: 1px; margin-bottom: 40px;">
+                // WARNING: READ CAREFULLY BEFORE CONTRACT INITIATION
+            </p>
+
+            <!-- DOCUMENT 01: REFUNDS -->
+            <div class="policy-doc hazard">
+                <div class="doc-header">
+                    <h3><i class="fas fa-ban"></i> PROTOCOL 01: IMMUTABLE LEDGER (NO REFUNDS)</h3>
+                    <span class="status-tag red">NON-NEGOTIABLE</span>
+                </div>
+                <div class="doc-body">
+                    <p>
+                        Due to the digital nature of Software Engineering and System Architecture, <strong>AK.SYSTEMS enforces a strict No-Refund Policy.</strong> 
+                    </p>
+                    <p>
+                        Once a contract is signed and the initial deposit is cleared, resources are immediately allocated to your project. This includes server setup, architectural planning, and code initialization. Since time and intellectual property cannot be "returned," all financial transactions are final.
+                    </p>
+                    <p>
+                        By transferring funds, the Client acknowledges that they are satisfied with the project scope and waives the right to chargebacks or disputes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- DOCUMENT 02: PAYMENTS -->
+            <div class="policy-doc">
+                <div class="doc-header">
+                    <h3><i class="fas fa-file-invoice-dollar"></i> PROTOCOL 02: INITIALIZATION FEE</h3>
+                    <span class="status-tag yellow">REQUIRED</span>
+                </div>
+                <div class="doc-body">
+                    <p>
+                        To filter serious inquiries from casual requests, <strong>a 50% Advanced Payment is mandatory</strong> before any work commences.
+                    </p>
+                    <p>
+                        This deposit acts as a security bond and reserves your slot in the development queue. No code will be written, and no files will be shared until this transaction is verified on the blockchain or banking ledger. The remaining 50% is due upon project completion, prior to the final transfer of source code / credentials.
+                    </p>
+                </div>
+            </div>
+
+            <!-- DOCUMENT 03: SCHEDULE -->
+            <div class="policy-doc">
+                <div class="doc-header">
+                    <h3><i class="fas fa-clock"></i> PROTOCOL 03: ACTIVE CYCLES</h3>
+                    <span class="status-tag cyan">INFO</span>
+                </div>
+                <div class="doc-body">
+                    <p>
+                        <strong>OPERATIONAL HOURS:</strong> Monday through Saturday.
+                    </p>
+                    <p>
+                        Development, debugging, and client communication occur strictly within these active cycles. 
+                        <br><br>
+                        <strong>SUNDAY BLACKOUT:</strong> Sundays are reserved for System Maintenance and offline recovery. Messages sent on Sunday will be queued and processed on Monday morning. Rush orders requiring Sunday work will incur a "Crisis Surcharge" of 30%.
+                    </p>
+                </div>
+            </div>
+
+             <!-- DOCUMENT 04: IP RIGHTS -->
+             <div class="policy-doc">
+                <div class="doc-header">
+                    <h3><i class="fas fa-copyright"></i> PROTOCOL 04: INTELLECTUAL PROPERTY</h3>
+                    <span class="status-tag green">LEGAL</span>
+                </div>
+                <div class="doc-body">
+                    <p>
+                        Upon full payment, the Client is granted a license to use the software for its intended purpose. However, <strong>AK.SYSTEMS retains the right to the underlying reusable code libraries</strong> and architectural patterns.
+                    </p>
+                    <p>
+                        Unauthorized resale, distribution, or claiming authorship of the code without express written permission is a violation of International Copyright Law and will result in immediate legal action.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>&copy; 2024 ABHINIT KUMAR. ALL PROTOCOLS ACTIVE.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Staggered entrance animation for documents
+        gsap.from(".policy-doc", { 
+            duration: 0.8, 
+            x: -50, 
+            opacity: 0, 
+            stagger: 0.3, 
+            ease: "power2.out", 
+            delay: 0.2 
+        });
+    </script>
+</body>
+</html>
