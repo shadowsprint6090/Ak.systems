@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinit Kumar | Transmit Data</title>
+    
+    <!-- EmailJS SDK (REQUIRED) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div id="music-hud">
+        <button class="music-btn" onclick="toggleMusic()">AUDIO</button>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=synthwave-outrun-112579.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="canvas-container"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">AK.MAIL</div>
+            </div>
+            <a href="index.html" class="cyber-btn white magnetic">
+                <i class="fas fa-arrow-left"></i> RETURN
+            </a>
+        </header>
+
+        <section class="info-section">
+            <h1 class="glitch-header" data-text="TRANSMISSION">TRANSMISSION</h1>
+            
+            <div class="contact-wrapper">
+                <!-- CONTACT FORM -->
+                <div class="content-block glass-panel contact-form-container">
+                    <h2 class="neon-yellow"><i class="fas fa-satellite-dish"></i> SEND MESSAGE</h2>
+                    <p>Establish a direct line. Fill out the protocol below.</p>
+
+                    <form id="contact-form">
+                        <!-- Name -->
+                        <div class="input-group">
+                            <label for="name">IDENTIFIER (NAME)</label>
+                            <input type="text" id="name" name="user_name" placeholder="Enter your name" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group">
+                            <label for="email">RETURN ADDRESS (EMAIL)</label>
+                            <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- Subject -->
+                        <div class="input-group">
+                            <label for="subject">SUBJECT PROTOCOL</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Shadow Mods / Other" required>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="input-group">
+                            <label for="message">DATA PACKET (MESSAGE)</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                        </div>
+
+                        <!-- Subscribe Checkbox -->
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="subscribe" name="subscribe">
+                            <label for="subscribe">Subscribe to <strong>AK.SYSTEMS</strong> Newsletter (Updates on Shadow Mods & Tech)</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="cyber-btn yellow magnetic" style="width: 100%; justify-content: center; margin-top: 20px;">
+                            <i class="fas fa-paper-plane"></i> INITIATE TRANSMISSION
+                        </button>
+                    </form>
+                    
+                    <div id="status-message" style="margin-top: 20px; font-weight: bold;"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 ABHINIT KUMAR. ENCRYPTED CHANNEL.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
