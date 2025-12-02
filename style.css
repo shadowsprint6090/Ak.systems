@@ -231,6 +231,7 @@ header { padding: 40px 0; display: flex; justify-content: space-between; align-i
    ========================================= */
 .info-section { padding: 50px 0; }
 
+/* Content Blocks */
 .content-block {
     background: var(--glass-panel);
     border: 1px solid var(--glass-border);
@@ -266,7 +267,7 @@ header { padding: 40px 0; display: flex; justify-content: space-between; align-i
 }
 
 /* =========================================
-   POLICIES PAGE
+   POLICIES PAGE (FIXED RED CARD)
    ========================================= */
 
 .policy-doc {
@@ -278,28 +279,29 @@ header { padding: 40px 0; display: flex; justify-content: space-between; align-i
     border-radius: 5px;
 }
 
-/* --- FIXED VISIBILITY FOR HAZARD (NO REFUND) CARD --- */
+/* --- HIGH VISIBILITY FIX FOR RED CARD --- */
 .policy-doc.hazard {
-    /* Bright Red Background Gradient to ensure visibility */
-    background: linear-gradient(135deg, rgba(80, 0, 0, 0.95), rgba(40, 0, 0, 0.95));
-    border: 2px solid #ff2a2a;
-    box-shadow: 0 0 25px rgba(255, 42, 42, 0.2);
-    z-index: 10;
+    /* Bright Gradient Background */
+    background: linear-gradient(135deg, rgba(100, 0, 0, 0.95), rgba(50, 0, 0, 0.95)) !important;
+    border: 2px solid var(--neon-red) !important;
+    box-shadow: 0 0 25px rgba(255, 42, 42, 0.3) !important;
+    z-index: 20;
 }
 
 .policy-doc.hazard:hover {
     transform: scale(1.02);
-    background: linear-gradient(135deg, rgba(100, 0, 0, 1), rgba(60, 0, 0, 1));
-    box-shadow: 0 0 40px rgba(255, 42, 42, 0.4);
+    background: linear-gradient(135deg, rgba(120, 0, 0, 1), rgba(70, 0, 0, 1)) !important;
+    box-shadow: 0 0 40px rgba(255, 42, 42, 0.5) !important;
 }
 
-/* Ensure text inside Hazard card is white */
+/* Ensure white text inside red card */
 .policy-doc.hazard h3, 
 .policy-doc.hazard p {
     color: #fff !important;
-    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    text-shadow: 0 0 5px rgba(0,0,0,0.8);
 }
 
+/* Standard Doc Headers */
 .doc-header {
     background: rgba(255, 255, 255, 0.05);
     padding: 15px 30px;
