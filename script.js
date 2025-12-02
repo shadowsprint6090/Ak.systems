@@ -155,38 +155,30 @@ if (container) {
 }
 
 // =================================================================
-// 4. EMAIL SYSTEM (Requires Your Keys)
+// 4. EMAIL SYSTEM (DIRECT METHOD - FIXES KEY ERROR)
 // =================================================================
-
-(function() {
-    // 1. GO TO EMAILJS.COM -> ACCOUNT -> PUBLIC KEY
-    // PASTE IT INSIDE THE QUOTES BELOW
-    if(typeof emailjs !== 'undefined') {
-        emailjs.init("3UaBOVfaCKbirAs8J"); 
-    }
-})();
 
 const contactForm = document.getElementById('contact-form');
 
 if(contactForm) {
     contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Stop reload
+        event.preventDefault(); // Stop page reload
 
         const btn = contactForm.querySelector('button');
         const originalText = btn.innerHTML;
         const statusMsg = document.getElementById('status-message');
 
-        // Change button to Loading state
+        // Loading State
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TRANSMITTING...';
         btn.style.opacity = "0.7";
 
-        // 2. GO TO EMAILJS -> EMAIL SERVICES (Get Service ID)
-        // 3. GO TO EMAILJS -> EMAIL TEMPLATES (Get Template ID)
-        // PASTE THEM BELOW
-        const serviceID = 'service_zleetur';
-        const templateID = 'template_pavgye5';
+        // --- PASTE YOUR KEYS HERE ---
+        const serviceID = 'service_zleetur';   // e.g. "service_xyz"
+        const templateID = 'template_n2n57b2'; // e.g. "template_abc"
+        const publicKey = '3UaBOVfaCKbirAs8J';   // e.g. "user_12345"
 
-        emailjs.sendForm(serviceID, templateID, this)
+        // Send Email (Key is passed directly here to avoid init errors)
+        emailjs.sendForm(serviceID, templateID, this, publicKey)
             .then(() => {
                 // SUCCESS
                 btn.innerHTML = '<i class="fas fa-check"></i> SENT';
@@ -198,6 +190,7 @@ if(contactForm) {
                 setTimeout(() => { btn.innerHTML = originalText; }, 3000);
             }, (err) => {
                 // ERROR
+                console.error('EmailJS Error:', err);
                 btn.innerHTML = '<i class="fas fa-times"></i> FAILED';
                 btn.style.opacity = "1";
                 statusMsg.innerHTML = "ERROR: " + JSON.stringify(err);
@@ -207,6 +200,7 @@ if(contactForm) {
             });
     });
 }
+
 
 
 
