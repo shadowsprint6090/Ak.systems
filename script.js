@@ -183,8 +183,8 @@ if(contactForm) {
         // 2. GO TO EMAILJS -> EMAIL SERVICES (Get Service ID)
         // 3. GO TO EMAILJS -> EMAIL TEMPLATES (Get Template ID)
         // PASTE THEM BELOW
-        const serviceID = 'PASTE_YOUR_SERVICE_ID_HERE';
-        const templateID = 'PASTE_YOUR_TEMPLATE_ID_HERE';
+        const serviceID = 'service_zleetur';
+        const templateID = 'template_pavgye5';
 
         emailjs.sendForm(serviceID, templateID, this)
             .then(() => {
@@ -207,3 +207,4 @@ if(contactForm) {
             });
     });
 }
+
