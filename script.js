@@ -162,7 +162,7 @@ if (container) {
     // 1. GO TO EMAILJS.COM -> ACCOUNT -> PUBLIC KEY
     // PASTE IT INSIDE THE QUOTES BELOW
     if(typeof emailjs !== 'undefined') {
-        emailjs.init("PASTE_YOUR_PUBLIC_KEY_HERE"); 
+        emailjs.init("3UaBOVfaCKbirAs8J"); 
     }
 })();
 
@@ -207,4 +207,5 @@ if(contactForm) {
             });
     });
 }
+
 
